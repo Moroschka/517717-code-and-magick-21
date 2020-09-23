@@ -62,4 +62,5 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = `16px PT Mono`;
   ctx.fillText(`Ура вы победили!`, 120, 40);
   ctx.fillText(`Список результатов:`, 120, 60);
+  ctx.textBaseline = 'hanging';
 };
