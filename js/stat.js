@@ -38,7 +38,7 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       const getRandomColor = function () {
         let color = Math.floor(Math.random() * 100);
-        return `hsl(240, 100%,` + color + `%` + `)`;
+        return `hsl(240, 100%,${color}%)`;
       };
       ctx.fillStyle = getRandomColor();
     }
