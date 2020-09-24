@@ -25,42 +25,66 @@ const getMaxElement = function (arr) {
   }
   return maxElement;
 };
-window.renderStatistics = function (ctx, names, times) {
-  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
-  renderCloud(ctx, CLOUD_X, CLOUD_Y, `#ffffff`);
 
+const getRandomColor = function () {
+  let color = Math.floor(Math.random() * 100);
+  return `hsl(240, 100%, ${color}%)`;
+};
+
+const getDefineFill = function (ctx, names, i) {
+  if (names[i] === `Вы`) {
+    ctx.fillStyle = `rgba(255, 0, 0, 1)`;
+  } else {
+    ctx.fillStyle = getRandomColor();
+  }
+};
+
+const renderHistogram = function (ctx, times, maxTime, names, i) {
+  const barHeight = (times[i] * MAX_BAR_HEIGHT) / maxTime;
+  getDefineFill(ctx, names, i);
+  ctx.fillRect(
+      CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
+      CLOUD_HEIGHT - barHeight - FONT_GAP / 2,
+      BAR_WIDTH,
+      barHeight);
+};
+
+const renderNameSignatures = function (ctx, names, i) {
   ctx.fillStyle = `#000000`;
+  ctx.textBaseline = `hanging`;
+  ctx.fillText(
+      names[i],
+      CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
+      CLOUD_HEIGHT - CLOUD_Y);
+};
+
+const renderTimeSignatures = function (ctx, times, maxTime, i) {
+  ctx.fillStyle = `#000000`;
+  ctx.textBaseline = `hanging`;
+  ctx.fillText(
+      Math.round(times[i]),
+      CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
+      CLOUD_HEIGHT - CLOUD_Y - (times[i] * MAX_BAR_HEIGHT) / maxTime - FONT_GAP);
+};
+
+const renderDescription = function (ctx, color, font) {
+  ctx.fillStyle = color;
+  ctx.textBaseline = `hanging`;
+  ctx.font = font;
+  ctx.fillText(`Ура вы победили!`, 120, 30);
+  ctx.fillText(`Список результатов:`, 120, 50);
+};
+
+window.renderStatistics = function (ctx, names, times) {
   const maxTime = getMaxElement(times);
 
+  renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
+  renderCloud(ctx, CLOUD_X, CLOUD_Y, `#ffffff`);
+  renderDescription(ctx, `#000000`, `16px PT Mono`);
+
   for (let i = 0; i < names.length; i++) {
-    if (names[i] === `Вы`) {
-      ctx.fillStyle = `rgba(255, 0, 0, 1)`;
-    } else {
-      const getRandomColor = function () {
-        let color = Math.floor(Math.random() * 100);
-        return `hsl(240, 100%,${color}%)`;
-      };
-      ctx.fillStyle = getRandomColor();
-    }
-
-    ctx.fillRect(
-        CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
-        CLOUD_HEIGHT - (times[i] * MAX_BAR_HEIGHT) / maxTime - FONT_GAP,
-        BAR_WIDTH,
-        (times[i] * MAX_BAR_HEIGHT) / maxTime);
-
-    ctx.fillStyle = `#000000`;
-    ctx.fillText(
-        names[i],
-        CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
-        CLOUD_HEIGHT - CLOUD_Y);
-    ctx.fillText(
-        Math.round(times[i]),
-        CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
-        CLOUD_HEIGHT - CLOUD_Y - (times[i] * MAX_BAR_HEIGHT) / maxTime - FONT_GAP);
+    renderHistogram(ctx, times, maxTime, names, i);
+    renderNameSignatures(ctx, names, i);
+    renderTimeSignatures(ctx, times, maxTime, i);
   }
-  ctx.font = `16px PT Mono`;
-  ctx.fillText(`Ура вы победили!`, 120, 40);
-  ctx.fillText(`Список результатов:`, 120, 60);
-  ctx.textBaseline = 'hanging';
 };
