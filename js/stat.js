@@ -27,44 +27,50 @@ const getMaxElement = function (arr) {
 };
 
 const getRandomColor = function () {
-  let color = Math.floor(Math.random() * 100);
-  return `hsl(240, 100%, ${color}%)`;
+  let lightness = Math.floor(Math.random() * 100);
+  return `hsl(240, 100%, ${lightness}%)`;
 };
 
-const getDefineFill = function (ctx, names, i) {
-  if (names[i] === `Вы`) {
+const getColourByName = function (ctx, names) {
+  if (names === `Вы`) {
     ctx.fillStyle = `rgba(255, 0, 0, 1)`;
   } else {
     ctx.fillStyle = getRandomColor();
   }
 };
 
-const renderHistogram = function (ctx, times, maxTime, names, i) {
-  const barHeight = (times[i] * MAX_BAR_HEIGHT) / maxTime;
-  getDefineFill(ctx, names, i);
-  ctx.fillRect(
-      CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
-      CLOUD_HEIGHT - barHeight - FONT_GAP / 2,
-      BAR_WIDTH,
-      barHeight);
+const renderHistogram = function (ctx, times, maxTime, names) {
+  for (let i = 0; i < names.length; i++) {
+    const barHeight = (times[i] * MAX_BAR_HEIGHT) / maxTime;
+    getColourByName(ctx, names[i], i);
+    ctx.fillRect(
+        CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
+        CLOUD_HEIGHT - barHeight - FONT_GAP / 2,
+        BAR_WIDTH,
+        barHeight);
+  }
 };
 
-const renderNameSignatures = function (ctx, names, i) {
+const renderNameSignatures = function (ctx, names) {
   ctx.fillStyle = `#000000`;
   ctx.textBaseline = `hanging`;
-  ctx.fillText(
-      names[i],
-      CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
-      CLOUD_HEIGHT - CLOUD_Y);
+  for (let i = 0; i < names.length; i++) {
+    ctx.fillText(
+        names[i],
+        CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
+        CLOUD_HEIGHT - CLOUD_Y);
+  }
 };
 
-const renderTimeSignatures = function (ctx, times, maxTime, i) {
+const renderTimeSignatures = function (ctx, times, maxTime) {
   ctx.fillStyle = `#000000`;
   ctx.textBaseline = `hanging`;
-  ctx.fillText(
-      Math.round(times[i]),
-      CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
-      CLOUD_HEIGHT - CLOUD_Y - (times[i] * MAX_BAR_HEIGHT) / maxTime - FONT_GAP);
+  for (let i = 0; i < times.length; i++) {
+    ctx.fillText(
+        Math.round(times[i]),
+        CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
+        CLOUD_HEIGHT - CLOUD_Y - (times[i] * MAX_BAR_HEIGHT) / maxTime - FONT_GAP);
+  }
 };
 
 const renderDescription = function (ctx, color, font) {
@@ -81,10 +87,7 @@ window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, `rgba(0, 0, 0, 0.7)`);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, `#ffffff`);
   renderDescription(ctx, `#000000`, `16px PT Mono`);
-
-  for (let i = 0; i < names.length; i++) {
-    renderHistogram(ctx, times, maxTime, names, i);
-    renderNameSignatures(ctx, names, i);
-    renderTimeSignatures(ctx, times, maxTime, i);
-  }
+  renderHistogram(ctx, times, maxTime, names);
+  renderNameSignatures(ctx, names);
+  renderTimeSignatures(ctx, times, maxTime);
 };
