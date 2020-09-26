@@ -31,18 +31,17 @@ const getRandomColor = function () {
   return `hsl(240, 100%, ${lightness}%)`;
 };
 
-const getColourByName = function (ctx, names) {
-  if (names === `Вы`) {
-    ctx.fillStyle = `rgba(255, 0, 0, 1)`;
-  } else {
-    ctx.fillStyle = getRandomColor();
+const getColourByName = function (name) {
+  if (name === `Вы`) {
+    return `rgba(255, 0, 0, 1)`;
   }
+  return getRandomColor();
 };
 
 const renderHistogram = function (ctx, times, maxTime, names) {
   for (let i = 0; i < names.length; i++) {
     const barHeight = (times[i] * MAX_BAR_HEIGHT) / maxTime;
-    getColourByName(ctx, names[i]);
+    ctx.fillStyle = getColourByName(names[i]);
     ctx.fillRect(
         CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i,
         CLOUD_HEIGHT - barHeight - FONT_GAP / 2,
