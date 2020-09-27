@@ -22,16 +22,16 @@ const getRandomNumber = function (min, max) {
 const createWizardsArray = function () {
   for (let i = 0; i <= NUMBER_WIZARDS - 1; i++) {
     wizards[i] = {
-    name: NAMES[getRandomNumber(0, NAMES.length)] + ` ` + SURNAMES[getRandomNumber(0, SURNAMES.length)],
-    coatColor: COAT_COLORS[getRandomNumber(0, COAT_COLORS.length)],
-    eyesColor: EYES_COLORS[getRandomNumber(0, EYES_COLORS.length)]
-    }
+      name: NAMES[getRandomNumber(0, NAMES.length)] + ` ` + SURNAMES[getRandomNumber(0, SURNAMES.length)],
+      coatColor: COAT_COLORS[getRandomNumber(0, COAT_COLORS.length)],
+      eyesColor: EYES_COLORS[getRandomNumber(0, EYES_COLORS.length)]
+    };
   }
   return wizards;
 };
 createWizardsArray();
 
-const renderWizard = function (wizards) {
+const renderWizard = function () {
   const wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector(`.setup-similar-label`).textContent = wizards.name;
