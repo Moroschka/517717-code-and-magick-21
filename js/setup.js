@@ -31,15 +31,16 @@ const createWizardsArray = function () {
 };
 createWizardsArray();
 
-const renderWizard = function () {
+const renderWizard = function (elements) {
   const wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector(`.setup-similar-label`).textContent = wizards.name;
-  wizardElement.querySelector(`.wizard-coat`).style.fill = wizards.coatColor;
-  wizardElement.querySelector(`.wizard-eyes`).style.fill = wizards.eyesColor;
+  wizardElement.querySelector(`.setup-similar-label`).textContent = elements.name;
+  wizardElement.querySelector(`.wizard-coat`).style.fill = elements.coatColor;
+  wizardElement.querySelector(`.wizard-eyes`).style.fill = elements.eyesColor;
 
   return wizardElement;
 };
+renderWizard(wizards);
 
 const fillingBlockWizard = function () {
   const fragment = document.createDocumentFragment();
