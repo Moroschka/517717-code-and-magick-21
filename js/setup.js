@@ -8,35 +8,47 @@ const NUMBER_WIZARDS = 4;
 const similarWizardTemplate = document.querySelector(`#similar-wizard-template`).content;
 const userDialog = document.querySelector(`.setup`);
 const similarListElement = userDialog.querySelector(`.setup-similar-list`);
-let wizards = [];
 
 const showWindowPersonage = function () {
   userDialog.classList.remove(`hidden`);
 };
 showWindowPersonage();
 
+const showSimilarPersonages = function () {
+  userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
+};
+showSimilarPersonages();
+
 const getRandomNumber = function (min, max) {
   return Math.floor(min + Math.random() * (max - min));
 };
 
-const createWizardsArray = function () {
-  for (let i = 0; i <= NUMBER_WIZARDS - 1; i++) {
-    wizards[i] = {
-      name: NAMES[getRandomNumber(0, NAMES.length)] + ` ` + SURNAMES[getRandomNumber(0, SURNAMES.length)],
-      coatColor: COAT_COLORS[getRandomNumber(0, COAT_COLORS.length)],
-      eyesColor: EYES_COLORS[getRandomNumber(0, EYES_COLORS.length)]
-    };
-  }
-  return wizards;
-};
-createWizardsArray();
+const createWizard = function () {
+  const firstWizard = {};
 
-const renderWizard = function (elements) {
+  firstWizard.name = NAMES[getRandomNumber(0, NAMES.length)] + ` ` + SURNAMES[getRandomNumber(0, SURNAMES.length)];
+  firstWizard.coatColor = COAT_COLORS[getRandomNumber(0, COAT_COLORS.length)];
+  firstWizard.eyesColor = EYES_COLORS[getRandomNumber(0, EYES_COLORS.length)];
+
+  return firstWizard;
+};
+
+const createWizardsMock = function () {
+  let wizardsMock = [];
+
+  for (let i = 0; i < NUMBER_WIZARDS; i++) {
+    wizardsMock.push(createWizard());
+  }
+  return wizardsMock;
+};
+const wizards = createWizardsMock();
+
+const renderWizard = function (personages) {
   const wizardElement = similarWizardTemplate.cloneNode(true);
 
-  wizardElement.querySelector(`.setup-similar-label`).textContent = elements.name;
-  wizardElement.querySelector(`.wizard-coat`).style.fill = elements.coatColor;
-  wizardElement.querySelector(`.wizard-eyes`).style.fill = elements.eyesColor;
+  wizardElement.querySelector(`.setup-similar-label`).textContent = personages.name;
+  wizardElement.querySelector(`.wizard-coat`).style.fill = personages.coatColor;
+  wizardElement.querySelector(`.wizard-eyes`).style.fill = personages.eyesColor;
 
   return wizardElement;
 };
@@ -51,7 +63,3 @@ const fillingBlockWizard = function () {
 };
 fillingBlockWizard();
 
-const showSimilarPersonages = function () {
-  userDialog.querySelector(`.setup-similar`).classList.remove(`hidden`);
-};
-showSimilarPersonages();
