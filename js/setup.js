@@ -24,13 +24,11 @@ const getRandomNumber = function (min, max) {
 };
 
 const createWizard = function () {
-  const firstWizard = {};
-
-  firstWizard.name = NAMES[getRandomNumber(0, NAMES.length)] + ` ` + SURNAMES[getRandomNumber(0, SURNAMES.length)];
-  firstWizard.coatColor = COAT_COLORS[getRandomNumber(0, COAT_COLORS.length)];
-  firstWizard.eyesColor = EYES_COLORS[getRandomNumber(0, EYES_COLORS.length)];
-
-  return firstWizard;
+  return {
+    name: NAMES[getRandomNumber(0, NAMES.length)] + ` ` + SURNAMES[getRandomNumber(0, SURNAMES.length)],
+    coatColor: COAT_COLORS[getRandomNumber(0, COAT_COLORS.length)],
+    eyesColor: EYES_COLORS[getRandomNumber(0, EYES_COLORS.length)]
+  };
 };
 
 const createWizardsMock = function () {
@@ -43,16 +41,14 @@ const createWizardsMock = function () {
 };
 const wizards = createWizardsMock();
 
-const renderWizard = function (personages) {
+const renderWizard = function (wizard) {
   const wizardElement = similarWizardTemplate.cloneNode(true);
-
-  wizardElement.querySelector(`.setup-similar-label`).textContent = personages.name;
-  wizardElement.querySelector(`.wizard-coat`).style.fill = personages.coatColor;
-  wizardElement.querySelector(`.wizard-eyes`).style.fill = personages.eyesColor;
+  wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
+  wizardElement.querySelector(`.wizard-coat`).style.fill = wizard.coatColor;
+  wizardElement.querySelector(`.wizard-eyes`).style.fill = wizard.eyesColor;
 
   return wizardElement;
 };
-renderWizard(wizards);
 
 const fillingBlockWizard = function () {
   const fragment = document.createDocumentFragment();
