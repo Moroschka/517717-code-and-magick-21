@@ -7,7 +7,6 @@
   <title>Код и Магия</title>
 </head>
 <body>
-
   <header>
     <svg style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62
     86">
@@ -15,8 +14,8 @@
       <g id="wizard-coat">
         <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86 23 67 19 67"/>
         <polygon points="19 59 19 67 23 67 23 86 48 86 48 54 19 54 19 59"/>
-    </g>
-    <g id="wizard-head">
+      </g>
+      <g id="wizard-head">
         <polygon points="48 86 53 86 53 15 58 15 58 10 62 10 62 5 58 5 58 10 48 10 48 5 43 5 43 10 48 10 48 14 48 86"
         fill="#be3827"/>
         <polygon points="9 37 19 37 19 23 48 23 48 28 53 28 53 42 48 42 48 51 14 51 14 46 9 46 9 37"
@@ -29,12 +28,12 @@
         <polygon
         points="0 47 9 47 9 38 19 38 19 24 48 24 48 28 53 28 53 18 48 18 48 13 14 13 14 18 9 18 9 23 5 23 5 38 0 38 0 47"
         fill="#bec1c3"/>
-    </g>
-    <g id="wizard-eyes">
+      </g>
+      <g id="wizard-eyes">
         <rect x="28" y="33" width="5" height="5"/>
         <rect x="43" y="33" width="5" height="5"/>
-    </g>
-    <g id="wizard-hands">
+      </g>
+      <g id="wizard-hands">
         <polygon points="19 67 19 59 14 59 14 82 9 82 9 86 23 86
         23 67 19 67" fill="#fff" opacity="0.2"/>
         <rect x="14" y="73" width="5" height="5"
@@ -42,33 +41,33 @@
         <rect x="48" y="63" width="5" height="5" fill="#fbd868"/>
         <rect x="48" width="10" height="10" fill="#3aa2ca"/>
         <rect x="52" width="5" height="5" fill="#acd5fb"/>
+      </g>
     </g>
-</g>
-</svg>
-<div class="header-clouds"></div>
-<div class="header-fence"></div>
-<div class="header-tree"></div>
+  </svg>
+  <div class="header-clouds"></div>
+  <div class="header-fence"></div>
+  <div class="header-tree"></div>
 
-<h1 class="header-title section-title">
+  <h1 class="header-title section-title">
     Code&thinsp;and&thinsp;Magick
     <img src="img/title-site.png" alt="Code and magick">
-</h1>
-<p class="header-description">
+  </h1>
+  <p class="header-description">
     Это игра, где главного героя, которым вам предстоит управлять и изменять заклинаниями окружающий мир, зовут
     Пендальф Синий.
     Вместе с ним вас ждет увлекательное приключение&hellip;
-</p>
+  </p>
 
-<div class="demo"></div>
+  <div class="demo"></div>
 
-<div class="setup-open">
-    <img src="img/user-1.jpg" class="setup-open-icon">
-</div>
+  <div class="setup-open">
+    <img src="img/user-1.jpg" class="setup-open-icon" tabindex="0">
+  </div>
 </header>
 
 <div class="overlay setup hidden">
   <form class="setup-wizard-form"
-  method="post"
+  method="post" action="https://javascript.pages.academy/code-and-magick"
   enctype="multipart/form-data"
   autocomplete="off">
 
@@ -76,20 +75,20 @@
     <div class="setup-user">
       <div class="upload">
         <img class="setup-user-pic" src="img/user-1.jpg"/>
-        <input type="file" name="avatar">
-    </div>
-    <label>
+        <input type="file" name="avatar" accept="image/png, image/jpeg">
+      </div>
+      <label>
         <input type="text" name="username"
         maxlength="25" required
-        class="setup-user-name" value="Синий Пендальф"/>
-    </label>
-</div>
+        class="setup-user-name" name="usеrname" value="Синий Пендальф" minlength="2" maxlength="25" required>
+      </label>
+    </div>
 
-<span class="setup-close">&times;</span>
-</div>
+    <span class="setup-close" tabindex="0">&times;</span>
+  </div>
 
 
-<div class="setup-artifacts-shop">
+  <div class="setup-artifacts-shop">
     <div class="setup-artifacts-cell"><img src="img/icon-star.png" alt="Star" width="65" height="50" draggable="true">
     </div>
     <div class="setup-artifacts-cell"></div>
@@ -100,9 +99,9 @@
     <div class="setup-artifacts-cell"></div>
     <div class="setup-artifacts-cell"></div>
     <div class="setup-artifacts-cell"></div>
-</div>
+  </div>
 
-<div class="setup-player">
+  <div class="setup-player">
     <div class="setup-wizard-appearance">
       <div class="setup-wizard-wrap">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-wizard">
@@ -111,60 +110,60 @@
             <use xlink:href="#wizard-head" class="wizard-head"></use>
             <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
             <use xlink:href="#wizard-hands" class="wizard-hands"></use>
-        </g>
-    </svg>
-</div>
-<input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
-<input type="hidden" name="eyes-color" value="black">
-</div>
+          </g>
+        </svg>
+      </div>
+      <input type="hidden" name="coat-color" value="rgb(101, 137, 164)">
+      <input type="hidden" name="eyes-color" value="black">
+    </div>
 
-<div class="setup-fireball-wrap">
-  <div class="setup-fireball"></div>
-  <input type="hidden" name="fireball-color" value="#ee4830">
-</div>
+    <div class="setup-fireball-wrap" tabindex="0">
+      <div class="setup-fireball"></div>
+      <input type="hidden" name="fireball-color" value="#ee4830">
+    </div>
 
-<div class="setup-artifacts" dropzone="move">
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
+    <div class="setup-artifacts" dropzone="move">
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
 
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
 
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
 
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-  <div class="setup-artifacts-cell"></div>
-</div>
-</div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+      <div class="setup-artifacts-cell"></div>
+    </div>
+  </div>
 
-<div class="setup-footer">
+  <div class="setup-footer">
     <div class="setup-similar hidden">
 
       <h4 class="setup-similar-title">Похожие персонажи</h4>
 
       <div class="setup-similar-list"><!--Список похожих персонажей--></div>
-  </div>
+    </div>
 
-  <button class="button setup-submit">Сохранить</button>
-</div>
+    <button class="button setup-submit">Сохранить</button>
+  </div>
 </form>
 </div>
 
 <footer>
   <p><a href="http://htmlacademy.ru" class="footer-link"><img src="img/htmlacademy-logo.png" alt="HTML Academy"
     width="130">Сделано в HTML Academy</a>в 2017 году</p>
-</footer>
+  </footer>
 
-<template id="similar-wizard-template" style="display: none">
+  <template id="similar-wizard-template" style="display: none">
     <div class="setup-similar-item">
       <div class="setup-similar-content">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 86" class="setup-similar-wizard">
@@ -173,39 +172,39 @@
             <use xlink:href="#wizard-head" class="wizard-head"></use>
             <use xlink:href="#wizard-eyes" class="wizard-eyes"></use>
             <use xlink:href="#wizard-hands" class="wizard-hands"></use>
-        </g>
-    </svg>
-</div>
-<p class="setup-similar-label">Петр Петров</p>
-</div>
-</template>
+          </g>
+        </svg>
+      </div>
+      <p class="setup-similar-label">Петр Петров</p>
+    </div>
+  </template>
 
-<script>
+  <script>
     var fireballSize = 22;
 
     var getFireballSpeed = function (isMovingLeft) {
       return isMovingLeft ? 2 : 5;
-  }
+    }
 
-  var wizardWidth = 70;
+    var wizardWidth = 70;
 
-  var getWizardHeight = function () {
+    var getWizardHeight = function () {
       return 1.337 * wizardWidth;
-  }
+    }
 
-  var wizardSpeed = 3;
+    var wizardSpeed = 3;
 
-  var getWizardX = function (gameFieldWidth) {
+    var getWizardX = function (gameFieldWidth) {
       return (gameFieldWidth - wizardWidth) / 2;
-  }
+    }
 
-  var getWizardY = function (gameFieldHeight) {
+    var getWizardY = function (gameFieldHeight) {
       return gameFieldHeight / 3;
-  }
-</script>
-<script src="js/stat.js"></script>
-<script src="js/setup.js"></script>
-<script src="js/game.js"></script>
+    }
+  </script>
+  <script src="js/stat.js"></script>
+  <script src="js/setup.js"></script>
+  <script src="js/game.js"></script>
 
 </body>
 </html>
