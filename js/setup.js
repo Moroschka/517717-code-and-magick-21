@@ -76,7 +76,6 @@ fillBlockWizard();
 
 const onPopupEscPress = function (evt) {
   if (userNameInput !== document.activeElement && evt.key === `Escape`) {
-    evt.preventDefault();
     closePopup();
   }
 };
